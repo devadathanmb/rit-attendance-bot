@@ -104,7 +104,10 @@ bot.command('attendance', async (ctx) => {
           subject.percentage.split(' ')[0]
         )
           .toFixed(2)
-          .padStart(6)}%\n`
+          .padStart(6)}% cut: ${utilites.calculateCut(
+          parseInt(subject.present_hours),
+          parseInt(subject.total_hours)
+        )}\n`
       )
     })
     const message = `
