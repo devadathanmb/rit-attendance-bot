@@ -7,7 +7,6 @@ function shortenSubjectName(subjectName) {
     .forEach((word) => {
       shortenedName = shortenedName.concat(word[0])
     })
-  console.log(shortenedName)
   return shortenedName
 }
 
