@@ -4,6 +4,8 @@ const axios = require('axios')
 const LocalSession = require('telegraf-session-local')
 const Quote = require('inspirational-quotes')
 
+const utilites = require('./utilities.js')
+
 const API_TOKEN = process.env.API_TOKEN
 const SERVER_URL = process.env.SERVER_URL
 const PORT = process.env.PORT
@@ -94,10 +96,17 @@ bot.command('attendance', async (ctx) => {
     let attendance_data = ''
     response.data.subject_attendance.forEach((subject) => {
       attendance_data = attendance_data.concat(
-        `${subject.subject_code}:   ${subject.present_hours}/${subject.total_hours}   ${subject.percentage}\n`
+        `${utilites
+          .shortenSubjectName(subject.subject_name)
+          .padEnd(5)}: ${subject.present_hours.padStart(
+          2
+        )}/${subject.total_hours.padEnd(2)} ${parseInt(
+          subject.percentage.split(' ')[0]
+        )
+          .toFixed(2)
+          .padStart(6)}%\n`
       )
     })
-    /* console.log(attendance_data) */
     const message = `
 **ATTENDANCE**
 
@@ -164,7 +173,7 @@ bot.on('text', async (ctx) => {
     .replyWithHTML(message, {
       reply_to_message_id: ctx.message.message_id,
     })
-    .then(({message_id}) => {
+    .then(({ message_id }) => {
       setTimeout(() => ctx.deleteMessage(message_id), 1000)
     })
     .then(() => {
