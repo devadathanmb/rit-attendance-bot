@@ -1,3 +1,4 @@
 node_modules/
 .env
 session_log.json
+test/
