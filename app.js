@@ -42,8 +42,6 @@ bot.command('help', async (ctx) => {
 
 // Login command
 bot.command('login', async (ctx) => {
-  console.log('/login')
-
   try {
     const credentials = ctx.message.text.split(' ')[1]
     const username = credentials.split(':')[0]
@@ -77,7 +75,6 @@ bot.command('login', async (ctx) => {
 
 // Attendance command
 bot.command('attendance', async (ctx) => {
-  console.log('/attendance')
   const cookie = ctx.session.session_cookie
   if (!cookie) {
     ctx.reply(
