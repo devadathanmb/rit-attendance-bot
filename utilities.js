@@ -1,3 +1,5 @@
+// Utility functions used by the bot
+
 // Function to get the shortened subject name
 function shortenSubjectName(subjectName) {
   let shortenedName = ''
@@ -16,8 +18,6 @@ function calculateCut(presentHours, totalHours) {
   const totalCut = (presentHours * 100) / 75
   const cut = totalCut - totalHours
   if (currentPercentage > 75) {
-    const totalCut = (presentHours * 100) / 75
-    const cut = totalCut - totalHours
     return Math.floor(cut)
   } else {
     return Math.ceil(cut)
