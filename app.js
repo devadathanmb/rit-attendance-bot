@@ -7,7 +7,8 @@ const Quote = require("inspirational-quotes");
 const utilites = require("./utilities.js");
 const { storageMemory } = require("telegraf-session-local");
 
-const auth = require("./middleware/auth.js");
+const attendanceAuth = require("./middleware/attendanceAuth.js")
+const lastupdateAuth = require("./middleware/lastupdateAuth.js")
 
 const API_TOKEN = process.env.API_TOKEN;
 const SERVER_URL = process.env.SERVER_URL;
@@ -84,7 +85,7 @@ bot.command("login", async (ctx) => {
 });
 
 // Attendance command
-bot.command("attendance", auth, async (ctx) => {
+bot.command("attendance", attendanceAuth, async (ctx) => {
   const response = ctx.response;
   let attendance_data = "";
   response.data.subject_attendance.forEach((subject) => {
@@ -121,7 +122,7 @@ ${attendance_data}
 
 // Last update command
 
-bot.command("/lastupdate", auth, async (ctx) => {
+bot.command("/lastupdate", lastupdateAuth, async (ctx) => {
   const response = ctx.response;
   let message = "**LASTUPDATE** \n\n```\n";
   const lastUpdateObject = response.data;

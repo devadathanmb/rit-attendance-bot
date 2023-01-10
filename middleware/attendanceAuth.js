@@ -21,7 +21,7 @@ module.exports = async (ctx, next) => {
     } catch (error) {
       if (error instanceof axios.AxiosError) {
         ctx.reply(
-          'Session expired. Please login again to view last update details.'
+          'Session expired. Please login again to view attendance details.'
         )
       } else {
         console.log(error)
