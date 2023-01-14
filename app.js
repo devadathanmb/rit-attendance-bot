@@ -10,7 +10,7 @@ const attendanceAuth = require("./middleware/attendanceAuth.js");
 const lastupdateAuth = require("./middleware/lastupdateAuth.js");
 
 const API_TOKEN = process.env.API_TOKEN;
-const SERVER_URL = process.env.SERVER_URL;
+const WEB_HOOK_URL = process.env.WEB_HOOK_URL;
 const PORT = process.env.PORT;
 const API_URL = process.env.API_URL;
 
@@ -159,7 +159,7 @@ bot
   .launch({
     webhook: {
       // Public domain for webhook; e.g.: example.com
-      domain: SERVER_URL,
+      domain: WEB_HOOK_URL,
 
       // Port to listen on; e.g.: 8080
       port: PORT,
