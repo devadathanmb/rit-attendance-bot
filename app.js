@@ -5,10 +5,9 @@ const LocalSession = require("telegraf-session-local");
 const Quote = require("inspirational-quotes");
 
 const utilites = require("./utilities.js");
-const { storageMemory } = require("telegraf-session-local");
 
-const attendanceAuth = require("./middleware/attendanceAuth.js")
-const lastupdateAuth = require("./middleware/lastupdateAuth.js")
+const attendanceAuth = require("./middleware/attendanceAuth.js");
+const lastupdateAuth = require("./middleware/lastupdateAuth.js");
 
 const API_TOKEN = process.env.API_TOKEN;
 const SERVER_URL = process.env.SERVER_URL;
@@ -18,12 +17,7 @@ const API_URL = process.env.API_URL;
 axios.defaults.withCredentials = true;
 
 const bot = new Telegraf(API_TOKEN);
-bot.use(
-  new LocalSession({
-    expirationTime: 86400,
-    storage: storageMemory,
-  }).middleware()
-);
+bot.use(new LocalSession({}).middleware());
 
 // Start
 bot.start((ctx) => {
