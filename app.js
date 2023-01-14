@@ -4,7 +4,7 @@ const axios = require("axios");
 const LocalSession = require("telegraf-session-local");
 const Quote = require("inspirational-quotes");
 
-const utilites = require("./utilities.js");
+const utilites = require("./utility/utilities.js");
 
 const attendanceAuth = require("./middleware/attendanceAuth.js");
 const lastupdateAuth = require("./middleware/lastupdateAuth.js");
