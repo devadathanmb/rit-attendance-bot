@@ -1,31 +1,31 @@
 // Middleware to authenticate user
-const axios = require('axios')
+const axios = require("axios");
 
-const API_URL = process.env.API_URL
+const API_URL = process.env.API_URL;
 
 module.exports = async (ctx, next) => {
-  const cookie = ctx.session.session_cookie
+  const cookie = ctx.session.session_cookie;
   if (!cookie) {
     ctx.reply(
-      'You are logged out. Please login to view last update details. See /help for details'
-    )
+      "You are logged out. Please login to view last update details. See /help for details"
+    );
   } else {
     try {
       const response = await axios.get(`${API_URL}/attendance/lastupdate`, {
         headers: {
           Cookie: `session_cookie=${cookie};`,
         },
-      })
-      ctx.response = response
-      next()
+      });
+      ctx.response = response;
+      next();
     } catch (error) {
       if (error instanceof axios.AxiosError) {
         ctx.reply(
-          'Session expired. Please login again to last update details.'
-        )
+          "Session expired. Please login again to last update details."
+        );
       } else {
-        console.log(error)
+        console.log(error);
       }
     }
   }
-}
+};
