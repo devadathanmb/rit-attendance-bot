@@ -4,6 +4,7 @@ const { Telegraf } = require("telegraf");
 const axios = require("axios");
 const LocalSession = require("telegraf-session-local");
 const Quote = require("inspirational-quotes");
+const moment = require("moment");
 
 const utilites = require("./utility/utilities.js");
 
@@ -58,6 +59,7 @@ bot.command("login", async (ctx) => {
     const response = await axios.post(`${API_URL}/login`, requestBody);
     const cookie = response.data["session-cookie"];
     ctx.session.session_cookie = cookie;
+    ctx.session.created_at = moment().format();
     ctx.reply(
       "You are logged in. Now type /attendance to get attendance details.",
       {
