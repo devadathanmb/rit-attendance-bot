@@ -1,4 +1,5 @@
 require("dotenv").config();
+const ngrok = require("ngrok");
 const { Telegraf } = require("telegraf");
 const axios = require("axios");
 const LocalSession = require("telegraf-session-local");
@@ -10,7 +11,7 @@ const attendanceAuth = require("./middleware/attendanceAuth.js");
 const lastupdateAuth = require("./middleware/lastupdateAuth.js");
 
 const API_TOKEN = process.env.API_TOKEN;
-const WEB_HOOK_URL = process.env.WEB_HOOK_URL;
+/* const WEB_HOOK_URL = process.env.WEB_HOOK_URL; */
 const PORT = process.env.PORT;
 const API_URL = process.env.API_URL;
 
@@ -155,14 +156,18 @@ bot.on("text", async (ctx) => {
 });
 
 // Start webhook via launch method (preferred)
-bot
-  .launch({
-    webhook: {
-      // Public domain for webhook; e.g.: example.com
-      domain: WEB_HOOK_URL,
+(async function () {
+  const WEB_HOOK_URL = await ngrok.connect(8000);
+  console.log(WEB_HOOK_URL);
+  bot
+    .launch({
+      webhook: {
+        // Public domain for webhook; e.g.: example.com
+        domain: WEB_HOOK_URL,
 
-      // Port to listen on; e.g.: 8080
-      port: PORT,
-    },
-  })
-  .then(() => console.log(`🚀 Bot is up and running on port ${PORT}`));
+        // Port to listen on; e.g.: 8080
+        port: PORT,
+      },
+    })
+    .then(() => console.log(`🚀 Bot is up and running on port ${PORT}`));
+})();
