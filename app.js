@@ -5,22 +5,30 @@ const axios = require("axios");
 const LocalSession = require("telegraf-session-local");
 const Quote = require("inspirational-quotes");
 const moment = require("moment");
-
 const utilites = require("./utility/utilities.js");
-
 const auth = require("./middleware/auth.js");
+
+// Environment variables
 
 const API_TOKEN = process.env.API_TOKEN;
 /* const WEB_HOOK_URL = process.env.WEB_HOOK_URL; */
 const PORT = process.env.PORT;
 const API_URL = process.env.API_URL;
 
+// Configs
+
 axios.defaults.withCredentials = true;
 
+// Bot
+
 const bot = new Telegraf(API_TOKEN);
+
+// Middleware
+
 bot.use(new LocalSession({}).middleware());
 
 // Start
+
 bot.start((ctx) => {
   const message = `Hello ${ctx.chat.username}\n
 Thanks for using this bot.
@@ -45,6 +53,7 @@ bot.command("help", async (ctx) => {
 });
 
 // Login command
+
 bot.command("login", async (ctx) => {
   try {
     const credentials = ctx.message.text.split(" ")[1];
@@ -81,6 +90,7 @@ bot.command("login", async (ctx) => {
 });
 
 // Attendance command
+
 bot.command("attendance", auth, async (ctx) => {
   const response = ctx.response;
   let attendance_data = "";
@@ -138,6 +148,7 @@ bot.command("/lastupdate", auth, async (ctx) => {
 });
 
 // Handle other messages
+
 bot.on("text", async (ctx) => {
   const message = `<i>${Quote.getQuote().text}</i>\n
   - <i>${Quote.getQuote().author}</i>`;
@@ -156,17 +167,15 @@ bot.on("text", async (ctx) => {
     });
 });
 
-// Start webhook via launch method (preferred)
+// Ngrok wrapper for WEB_HOOK_URL
+
 (async function () {
   const WEB_HOOK_URL = await ngrok.connect(8000);
   console.log(WEB_HOOK_URL);
   bot
     .launch({
       webhook: {
-        // Public domain for webhook; e.g.: example.com
         domain: WEB_HOOK_URL,
-
-        // Port to listen on; e.g.: 8080
         port: PORT,
       },
     })
