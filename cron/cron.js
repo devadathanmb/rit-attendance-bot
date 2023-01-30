@@ -1,7 +1,9 @@
+// Cronjob file to clear out expired logins from sessions.json
+
 const LocalSession = require("telegraf-session-local");
 const moment = require("moment");
-const LocalSession = require("telegraf-session-local");
-const moment = require("moment");
+const cron = require("node-cron");
+
 const localSession = new LocalSession({
   database: "../sessions.json",
 });
