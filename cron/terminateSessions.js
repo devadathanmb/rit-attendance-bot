@@ -2,14 +2,12 @@
 
 const LocalSession = require("telegraf-session-local");
 const moment = require("moment");
-const cron = require("node-cron");
 
 const localSession = new LocalSession({
   database: "../sessions.json",
 });
 
-cron.schedule("*/10 * * * * *", () => {
-  console.log("Cron running");
+function terminateSessions() {
   const sessions = localSession.DB.value().sessions;
   for (const session of sessions) {
     console.log(session);
@@ -24,4 +22,6 @@ cron.schedule("*/10 * * * * *", () => {
     }
   }
   localSession.DB.write();
-});
+}
+
+module.exports = terminateSessions;
