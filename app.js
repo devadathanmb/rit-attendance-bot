@@ -16,13 +16,8 @@ const otherMsgHandler = require("./handlers/otherMsgHandler.js");
 // Environment variables
 
 const API_TOKEN = process.env.API_TOKEN;
-/* const WEB_HOOK_URL = process.env.WEB_HOOK_URL; */
 const PORT = process.env.PORT;
 const API_URL = process.env.API_URL;
-
-// Configs
-
-/* axios.defaults.withCredentials = true; */
 
 // Bot
 
@@ -46,7 +41,7 @@ bot.command("help", async (ctx) => {
 // Login command
 
 bot.command("login", async (ctx) => {
-  loginHandler(ctx, API_URL);
+  await loginHandler(ctx, API_URL);
 });
 
 // Attendance command
