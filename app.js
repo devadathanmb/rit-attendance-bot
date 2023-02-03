@@ -58,7 +58,7 @@ bot.command("/lastupdate", auth, async (ctx) => {
 
 // Handle other messages
 
-bot.on("text", async (ctx) => {
+bot.on("message", async (ctx) => {
   otherMsgHandler(ctx);
 });
 
