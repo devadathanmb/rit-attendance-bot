@@ -33,7 +33,7 @@ module.exports = async (ctx, next) => {
             ctx.reply(
               "⌛Session expired. Please login again to view attendance details."
             );
-          } else if (ROUTE == "lastupdate") {
+          } else if (ROUTE == "attendance/lastupdate") {
             ctx.reply(
               "⌛Session expired. Please login again to last update details."
             );
