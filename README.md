@@ -12,13 +12,15 @@ Find the bot <a href="https://t.me/rit_attendancebot"> here<a/>.
 As said above, this bot helps you see your attendance details published in [RIT Soft]() just with a few commands. I found that the popular [bot]() is now not working anymore so I decided to make my own.
 
 ## Previews
-<img src="./assets/1.jpg" />
+<div align="left">
+<img style="max-width:60%;" src="./assets/1.jpg" />
 <br>
-<img src="./assets/2.jpg" />
+<img style="max-width:60%;" src="./assets/2.jpg" />
 <br>
-<img src="./assets/3.jpg" />
+<img style="max-width:60%;" src="./assets/3.jpg" />
 <br>
-<img src="./assets/4.jpg" />
+<img style="max-width:60%;" src="./assets/4.jpg" />
+</div>
 
 ## Bot usage
 
