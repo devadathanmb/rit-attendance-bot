@@ -62,7 +62,7 @@ docker run <your app name>
 
 It's almost the same steps as above.
 
-1. Make sure `node, npm, git` is installed on your machine.
+1. Make sure [node](https://nodejs.org/en/), [npm](https://www.npmjs.com/), [git](https://git-scm.com/) is installed on your machine.
 2. Clone the repository.
 ```bash
 git clone https://github.com/devadathanmb/attendance-bot
