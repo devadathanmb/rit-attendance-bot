@@ -15,13 +15,13 @@ const otherMsgHandler = require("./handlers/otherMsgHandler.js");
 
 // Environment variables
 
-const API_TOKEN = process.env.API_TOKEN;
+const BOT_TOKEN = process.env.BOT_TOKEN;
 const PORT = process.env.PORT;
 const API_URL = process.env.API_URL;
 
 // Bot
 
-const bot = new Telegraf(API_TOKEN);
+const bot = new Telegraf(BOT_TOKEN);
 
 // Middleware
 
