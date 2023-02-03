@@ -1,5 +1,7 @@
 function startHandler(ctx) {
-  const message = `Hello ${ctx.chat.username} 👏\n
+  const message = `Hello ${
+    ctx.chat.username ? ctx.chat.username : "there!"
+  } 😃\n
 Thanks for using this bot.
 This bot can help you keep track of your attendance and maintain that sweet 75% ♥️ .
 
