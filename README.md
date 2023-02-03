@@ -9,7 +9,7 @@ Find the bot <a href="https://t.me/rit_attendancebot"> here<a/>.
 
 
 ## What does this bot do?
-As said above, this bot helps you see your attendance details published in [RIT Soft]() just with a few commands. I found that the popular [bot]() is now not working anymore so I decided to make my own.
+As said above, this bot helps you see your attendance details published in [RIT Soft](http://rit.ac.in/ritsoft/ritsoftv2/) just with a few commands. I found that the popular [atttendancebot](https://t.me/atttendancebot) is now not working anymore so I decided to make my own.
 
 ## Previews
 <div align="left">
@@ -42,13 +42,13 @@ See the available commands to see how to use the bot.
 ## Development
 To run this on your own development environment, do the following steps.
 
-### Using docker
-1. Make sure docker is installed on your machine.
+### Using Docker
+1. Make sure [Docker](https://www.docker.com/) is installed on your machine.
 2. Clone the repository
 ```bash
 git clone https://github.com/devadathanmb/attendance-bot
 ```
-3. Create a `.env` file in the cloned directory and setup the environment variables (see [env.example](file) for more info.)
+3. Create a `.env` file in the cloned directory and setup the environment variables (see [env.example](./env.example) for more info.)
 4. Build your docker image using
 ```bash
 docker build -t <your bot name> attendance-bot/
@@ -58,7 +58,7 @@ docker build -t <your bot name> attendance-bot/
 docker run <your app name>
 ```
 
-### Without docker
+### Without Docker
 
 It's almost the same steps as above.
 
@@ -75,7 +75,7 @@ cd attendance-bot
 ```bash
 npm install
 ```
-5. Create a `.env` file and setup the environment variables (see [env.example](file) for more info.)
+5. Create a `.env` file and setup the environment variables (see [env.example](./env.example) for more info.)
 6. Run the bot using 
 ```bash
 nodemon app.js --ignore sessions.json
