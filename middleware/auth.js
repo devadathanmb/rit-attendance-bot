@@ -5,7 +5,6 @@ const API_URL = process.env.API_URL;
 
 module.exports = async (ctx, next) => {
   const command = ctx.message.text.split("/")[1];
-  console.log(command);
   let ROUTE;
   if (command == "attendance") {
     ROUTE = "attendance";
@@ -16,7 +15,7 @@ module.exports = async (ctx, next) => {
   const cookie = ctx.session.session_cookie;
   if (!cookie) {
     ctx.reply(
-      "You are logged out. Please login to view attendance details. See /help for details"
+      "🚪You are logged out. Please login to view attendance/lastupdate details. See /help for details"
     );
   } else {
     try {
@@ -32,15 +31,15 @@ module.exports = async (ctx, next) => {
         if (error.response.status == 440) {
           if (ROUTE == "attendance") {
             ctx.reply(
-              "Session expired. Please login again to view attendance details."
+              "⌛Session expired. Please login again to view attendance details."
             );
           } else if (ROUTE == "lastupdate") {
             ctx.reply(
-              "Session expired. Please login again to last update details."
+              "⌛Session expired. Please login again to last update details."
             );
           }
         } else if (error.response.status == 404) {
-          ctx.reply("Sorry, it seems like data has not been updated yet.");
+          ctx.reply("📊 Sorry, it seems like data has not been updated yet.");
         }
       } else {
         console.log(error);

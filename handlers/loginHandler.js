@@ -23,7 +23,7 @@ async function loginHandler(ctx, API_URL) {
     ctx.session.session_cookie = cookie;
     ctx.session.created_at = moment().format();
     ctx.reply(
-      "You are logged in. Now type /attendance to get attendance details.",
+      "😎 You are logged in. Now type /attendance to get attendance details.",
       {
         reply_to_message_id: ctx.message.message_id,
       }
@@ -31,13 +31,13 @@ async function loginHandler(ctx, API_URL) {
   } catch (error) {
     if (error instanceof TypeError) {
       ctx.reply(
-        "Invalid format. Please use /login username:password to log in"
+        "📰 Invalid format. Please use /login username:password to log in"
       );
     } else if (error instanceof axios.AxiosError) {
       if (error.response.status == 401) {
-        ctx.reply("Invalid username or password sir");
+        ctx.reply("❌ Invalid username or password.");
       } else if (error.response.status == 440) {
-        ctx.reply("Session expired. Please login again.");
+        ctx.reply("⌛ Session expired. Please login again.");
       }
     } else {
       console.log(error);
