@@ -13,13 +13,13 @@ As said above, this bot helps you see your attendance details published in [RIT 
 
 ## Previews
 <div align="left">
-<img style="max-width:60%;" src="./assets/1.jpg" />
+<img style="max-width:40%;" src="./assets/1.jpg" />
 <br>
-<img style="max-width:60%;" src="./assets/2.jpg" />
+<img style="max-width:40%;" src="./assets/2.jpg" />
 <br>
-<img style="max-width:60%;" src="./assets/3.jpg" />
+<img style="max-width:40%;" src="./assets/3.jpg" />
 <br>
-<img style="max-width:60%;" src="./assets/4.jpg" />
+<img style="max-width:40%;" src="./assets/4.jpg" />
 </div>
 
 ## Bot usage
