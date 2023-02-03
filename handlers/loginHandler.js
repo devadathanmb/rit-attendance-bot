@@ -8,6 +8,11 @@ async function loginHandler(ctx, API_URL) {
     const credentials = ctx.message.text.split(" ")[1];
     const username = credentials.split(":")[0];
     const password = credentials.split(":")[1];
+
+    if(!username || !password){
+      throw new TypeError("Missing username or password");
+    }
+
     const requestBody = {
       username: username,
       password: password,
