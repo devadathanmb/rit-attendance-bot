@@ -4,7 +4,7 @@ const LocalSession = require("telegraf-session-local");
 const moment = require("moment");
 
 const localSession = new LocalSession({
-  database: "../sessions.json",
+  database: "/bot/sessions.json",
 });
 
 function terminateSessions() {
