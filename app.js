@@ -18,6 +18,7 @@ const otherMsgHandler = require("./handlers/otherMsgHandler.js");
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const PORT = process.env.PORT;
 const API_URL = process.env.API_URL;
+const NGROK_TOKEN = process.env.NGROK_TOKEN;
 
 // Bot
 
@@ -65,7 +66,7 @@ bot.on("message", async (ctx) => {
 // Ngrok wrapper for WEB_HOOK_URL
 
 (async function () {
-  const WEB_HOOK_URL = await ngrok.connect(8000);
+  const WEB_HOOK_URL = await ngrok.connect({authtoken: NGROK_TOKEN, addr:8000});
   bot
     .launch({
       webhook: {
