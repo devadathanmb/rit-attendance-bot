@@ -3,3 +3,4 @@ test/
 .git/
 env.example
 assets/
+cron/
