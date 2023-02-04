@@ -13,6 +13,9 @@ const attendanceHandler = require("./handlers/attendanceHandler.js");
 const lastupdateHandler = require("./handlers/lastupdateHandler.js");
 const otherMsgHandler = require("./handlers/otherMsgHandler.js");
 
+// Helper function to clear expired sessions
+const clearSession = require("./utility/clearSession.js");
+
 // Environment variables
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
@@ -26,7 +29,8 @@ const bot = new Telegraf(BOT_TOKEN);
 
 // Middleware
 
-bot.use(new LocalSession({}).middleware());
+const localSession = new LocalSession({});
+bot.use(localSession.middleware());
 
 // Start
 
@@ -62,6 +66,11 @@ bot.command("/lastupdate", auth, async (ctx) => {
 bot.on("message", async (ctx) => {
   otherMsgHandler(ctx);
 });
+
+// Clear expired sessions after an hour
+
+setInterval(() => clearSession(localSession), 3600000);
+
 
 // Ngrok wrapper for WEB_HOOK_URL
 
