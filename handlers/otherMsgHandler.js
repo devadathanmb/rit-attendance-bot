@@ -1,5 +1,5 @@
 // Handle messages other than commands
-const randomQuotes = require('random-quotes');
+const randomQuotes = require("random-quotes");
 
 function otherMsgHandler(ctx) {
   const quote = randomQuotes.default();
