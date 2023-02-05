@@ -19,11 +19,15 @@ module.exports = async (ctx, next) => {
     );
   } else {
     try {
+      const { message_id: messageID } = await ctx.replyWithHTML(
+        "<i><b>🧘Patience is the key to success</b></i>"
+      );
       const response = await axios.get(`${API_URL}/${ROUTE}`, {
         headers: {
           Cookie: `session_cookie=${cookie};`,
         },
       });
+      ctx.deleteMessage(messageID);
       ctx.response = response;
       next();
     } catch (error) {
