@@ -1,9 +1,10 @@
 // Handle messages other than commands
-const Quote = require("inspirational-quotes");
+const randomQuotes = require('random-quotes');
 
 function otherMsgHandler(ctx) {
-  const message = `<i>${Quote.getQuote().text}</i>\n
-  - <i>${Quote.getQuote().author}</i>`;
+  const quote = randomQuotes.default();
+  const message = `<i>${quote.body}</i>\n
+  - <i>${quote.author}</i>`;
   const invalidMsg =
     "🤔 That doesn't seem like a valid command. Use /help for available commands";
 
