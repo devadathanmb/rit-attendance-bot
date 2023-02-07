@@ -71,11 +71,10 @@ bot.on("message", async (ctx) => {
 
 setInterval(() => clearSession(localSession), 3600000);
 
-
 // Ngrok wrapper for WEB_HOOK_URL
 
 (async function () {
-  const WEB_HOOK_URL = await ngrok.connect({authtoken: NGROK_TOKEN, addr:8000});
+  const WEB_HOOK_URL = await ngrok.connect({ addr: 8000 });
   bot
     .launch({
       webhook: {
