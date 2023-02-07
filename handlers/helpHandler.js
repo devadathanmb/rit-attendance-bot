@@ -7,6 +7,7 @@ function helpHandler(ctx) {
 /login username:password - To login 
 /attendance - To view attendance details
 /lastupdate - To view last attendance update details
+/absent - To view absent dates and details
 `;
   ctx.reply(message, {
     reply_to_message_id: ctx.message.message_id,
