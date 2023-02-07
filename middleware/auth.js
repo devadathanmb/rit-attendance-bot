@@ -10,17 +10,19 @@ module.exports = async (ctx, next) => {
     ROUTE = "attendance";
   } else if (command == "lastupdate") {
     ROUTE = "attendance/lastupdate";
+  } else if (command == "absent") {
+    ROUTE = "attendance/absent";
   }
 
   const cookie = ctx.session.session_cookie;
   if (!cookie) {
     ctx.reply(
-      "🚪You are logged out. Please login to view attendance/lastupdate details. See /help for details"
+      "🚪You are logged out. Please login to view attendance/lastupdate/absent details. See /help for details"
     );
   } else {
     try {
       const { message_id: messageID } = await ctx.replyWithHTML(
-        "<i><b>🧘Patience is the key to success</b></i>"
+        "<i><b>🧘  Patience is the key to success</b></i>"
       );
       const response = await axios.get(`${API_URL}/${ROUTE}`, {
         headers: {
@@ -33,16 +35,16 @@ module.exports = async (ctx, next) => {
     } catch (error) {
       if (error instanceof axios.AxiosError) {
         if (error.response.status == 440) {
-          if (ROUTE == "attendance") {
-            ctx.reply(
-              "⌛Session expired. Please login again to view attendance details."
-            );
-          } else if (ROUTE == "attendance/lastupdate") {
-            ctx.reply(
-              "⌛Session expired. Please login again to last update details."
-            );
-          }
-        } else if (error.response.status == 404) {
+          ctx.reply(
+            "⌛Session expired. Please login again to view attendance details."
+          );
+        }
+      } else if (error.response.status == 404) {
+        if (ROUTE == "attendance/absent" && error.data == "No absent hours") {
+          ctx.reply(
+            "Seems like you were never absent or the data hasn't been updated yet. Please check /lastupdate to ensure."
+          );
+        } else {
           ctx.reply("📊 Sorry, it seems like data has not been updated yet.");
         }
       } else {
