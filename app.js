@@ -10,6 +10,7 @@ const loginHandler = require("./handlers/loginHandler.js");
 const startHandler = require("./handlers/startHandler.js");
 const helpHandler = require("./handlers/helpHandler.js");
 const attendanceHandler = require("./handlers/attendanceHandler.js");
+const absentHandler = require("./handlers/absentHandler.js");
 const lastupdateHandler = require("./handlers/lastupdateHandler.js");
 const otherMsgHandler = require("./handlers/otherMsgHandler.js");
 
@@ -60,6 +61,11 @@ bot.command("attendance", auth, async (ctx) => {
 bot.command("/lastupdate", auth, async (ctx) => {
   lastupdateHandler(ctx);
 });
+
+// Absent command
+bot.command("/absent", auth, async (ctx) => {
+  absentHandler(ctx);
+})
 
 // Handle other messages
 
