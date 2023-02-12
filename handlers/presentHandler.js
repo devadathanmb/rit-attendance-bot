@@ -18,7 +18,7 @@ async function presentHandler(ctx) {
     );
   });
 
-  ctx.reply("🥳 You were present on the following dates.");
+  await ctx.reply("🥳 You were present on the following dates.");
   const chunks = utilites.splitMsg(message);
   for (const chunk of chunks) {
     await ctx.reply(`\`\`\`\n${chunk}\n\`\`\``, { parse_mode: "Markdown" });
