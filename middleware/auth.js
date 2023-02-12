@@ -12,12 +12,14 @@ module.exports = async (ctx, next) => {
     ROUTE = "attendance/lastupdate";
   } else if (command == "absent") {
     ROUTE = "attendance/absent";
+  } else if (command == "present") {
+    ROUTE = "attendance/present";
   }
 
   const cookie = ctx.session.session_cookie;
   if (!cookie) {
     ctx.reply(
-      "🚪You are logged out. Please login to view attendance/lastupdate/absent details. See /help for details"
+      "🚪You are logged out. Please login to view attendance/lastupdate/absent/present details. See /help for details"
     );
   } else {
     try {
@@ -43,6 +45,13 @@ module.exports = async (ctx, next) => {
         if (ROUTE == "attendance/absent" && error.data == "No absent hours") {
           ctx.reply(
             "Seems like you were never absent or the data hasn't been updated yet. Please check /lastupdate to ensure."
+          );
+        } else if (
+          ROUTE == "attendance/present" &&
+          error.data == "No present hours"
+        ) {
+          ctx.reply(
+            "Seems like you were never present for any hours or the data hasn't been updated yet. Please check /lastupdate to ensure."
           );
         } else {
           ctx.reply("📊 Sorry, it seems like data has not been updated yet.");

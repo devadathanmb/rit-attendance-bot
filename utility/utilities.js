@@ -24,4 +24,22 @@ function calculateCut(presentHours, totalHours) {
   }
 }
 
-module.exports = { shortenSubjectName, calculateCut };
+// Function to split message if message size is large
+function splitMsg(message) {
+  const lines = message.split("\n");
+  const chunks = [];
+  let chunk = "";
+  for (const line of lines) {
+    if (chunk.split("\n").length >= 50) {
+      chunks.push(chunk);
+      chunk = "";
+    }
+    chunk += `${line}\n`;
+  }
+  if (chunk) {
+    chunks.push(chunk);
+  }
+  return chunks;
+}
+
+module.exports = { shortenSubjectName, calculateCut, splitMsg };
