@@ -20,6 +20,8 @@ As said above, this bot helps you see your attendance details published in [RIT 
 <img width=300px; src="./assets/3.jpg" />
 <br>
 <img width=300px; src="./assets/4.jpg" />
+<br>
+<img width=300px; src="./assets/5.jpg" />
 </div>
 
 ## Bot usage
@@ -35,6 +37,8 @@ See the available commands to see how to use the bot.
 /attendance - See attendance details.
 
 /lastupdate - See lastupdate details.
+
+/absent - See absent hours and details.
 
 /help - Help me!
 ```
