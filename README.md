@@ -42,7 +42,7 @@ See the available commands to see how to use the bot.
 
 /absent - See absent hours and details.
 
-/absent - See present hours and details.
+/present - See present hours and details.
 
 /help - Help me!
 ```
