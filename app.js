@@ -13,6 +13,7 @@ const attendanceHandler = require("./handlers/attendanceHandler.js");
 const absentHandler = require("./handlers/absentHandler.js");
 const presentHandler = require("./handlers/presentHandler.js");
 const lastupdateHandler = require("./handlers/lastupdateHandler.js");
+const aliveHandler = require("./handlers/aliveHandler.js");
 const otherMsgHandler = require("./handlers/otherMsgHandler.js");
 
 // Helper function to clear expired sessions
@@ -71,6 +72,11 @@ bot.command("/absent", auth, async (ctx) => {
 // Present command
 bot.command("/present", auth, async (ctx) => {
   presentHandler(ctx);
+});
+
+// Alive command
+bot.command("/alive", (ctx) => {
+  aliveHandler(ctx);
 });
 
 // Handle other messages
