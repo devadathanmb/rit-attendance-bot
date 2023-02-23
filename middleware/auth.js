@@ -56,6 +56,10 @@ module.exports = async (ctx, next) => {
         } else {
           ctx.reply("📊 Sorry, it seems like data has not been updated yet.");
         }
+      } else if (error.response.status >= 500) {
+        ctx.reply(
+          "🤔 Seems like there's some issue with RIT Soft. Please try again later."
+        );
       } else {
         console.log(error);
       }
