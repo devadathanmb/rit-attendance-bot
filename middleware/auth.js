@@ -40,26 +40,28 @@ module.exports = async (ctx, next) => {
           ctx.reply(
             "⌛Session expired. Please login again to view attendance details."
           );
-        }
-      } else if (error.response.status == 404) {
-        if (ROUTE == "attendance/absent" && error.data == "No absent hours") {
+        } else if (error.response.status == 404) {
+          if (ROUTE == "attendance/absent" && error.data == "No absent hours") {
+            ctx.reply(
+              "Seems like you were never absent or the data hasn't been updated yet. Please check /lastupdate to ensure."
+            );
+          } else if (
+            ROUTE == "attendance/present" &&
+            error.data == "No present hours"
+          ) {
+            ctx.reply(
+              "Seems like you were never present for any hours or the data hasn't been updated yet. Please check /lastupdate to ensure."
+            );
+          } else {
+            ctx.reply("📊 Sorry, it seems like data has not been updated yet.");
+          }
+        } else if (error.response.status >= 500) {
           ctx.reply(
-            "Seems like you were never absent or the data hasn't been updated yet. Please check /lastupdate to ensure."
-          );
-        } else if (
-          ROUTE == "attendance/present" &&
-          error.data == "No present hours"
-        ) {
-          ctx.reply(
-            "Seems like you were never present for any hours or the data hasn't been updated yet. Please check /lastupdate to ensure."
+            "🤔 Seems like there's some issue with RIT Soft. Please try again later."
           );
         } else {
-          ctx.reply("📊 Sorry, it seems like data has not been updated yet.");
+          console.log(error);
         }
-      } else if (error.response.status >= 500) {
-        ctx.reply(
-          "🤔 Seems like there's some issue with RIT Soft. Please try again later."
-        );
       } else {
         console.log(error);
       }
